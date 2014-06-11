@@ -1,32 +1,38 @@
 package com.epsi.user.dao.impl;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
+import com.epsi.user.dao.AbstractDao;
 import com.epsi.user.dao.UserDao;
-import com.epsi.user.entity.User;
-import com.epsi.util.CustomHibernateDaoSupport;
+import com.epsi.user.entity.UserEntity;
 
 
-public class UserDaoImpl extends CustomHibernateDaoSupport implements UserDao{
 
-	public void create(User user) {
-		getHibernateTemplate().create(user);
+@Repository("UserDao")
+public class UserDaoImpl extends AbstractDao<UserEntity, Long> implements UserDao {
+
+	private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
+
+	public UserDaoImpl() {
+		super();
 	}
 
-	public void update(User user) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	public void delete(User user) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	public User findByUserLogin(String userLogin) {
+	public Long create(UserEntity obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	public UserEntity find(Long id) {
+		return this.find(UserEntity.class, id);
+	}
+
+
 
 	
 }

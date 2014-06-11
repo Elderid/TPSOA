@@ -5,10 +5,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  
 
 
+
 import com.epsi.user.bo.UserBo;
-import com.epsi.user.entity.User;
+import com.epsi.user.dao.UserDao;
+import com.epsi.user.entity.UserEntity;
 import com.epsi.user.bo.UserBo;
-import com.epsi.user.entity.User;
+import com.epsi.user.entity.UserEntity;
  
 public class App 
 {
@@ -17,24 +19,24 @@ public class App
     	ApplicationContext appContext = 
     	  new ClassPathXmlApplicationContext("spring/config/BeanLocations.xml");
  
-    	UserBo userBo = (UserBo)appContext.getBean("userBo");
+    	UserDao userDao = (UserDao)appContext.getBean("userBo");
  
     	/** insert **/
-    	User user = new User();
+    	UserEntity user = new UserEntity();
     	user.setUserLogin("toto");
     	user.setUserPassword("toto");
-    	userBo.create(user);
+    	userDao.create(user);
  
     	/** select **/
-    	User user2 = userBo.findByUserLogin("toto");
+    	UserEntity user2 = userDao.findByUserLogin("toto");
     	System.out.println(user2);
  
     	/** update **/
     	user2.setUserPassword("titi");
-    	userBo.update(user2);
+    	userDao.update(user2);
  
     	/** delete **/
-    	userBo.delete(user2);
+    	userDao.delete(user2);
  
     	System.out.println("Done");
     }
